@@ -1,0 +1,19 @@
+services:
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile.worker
+    volumes:
+      - .:/app
+      - .:/broker-db
+      - .:/backend-db
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.app
+    volumes:
+      - .:/app
+      - .:/broker-db
+      - .:/backend-db
+    ports:
+      - "8000:5000"
